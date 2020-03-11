@@ -24,3 +24,14 @@ display: ${props => props.showEmailValidationError ? 'block' : 'none'};
   color: ${props => props.isPassed ? 'green' : 'red'};
 }
 `;
+
+export const StyledInputPhoneNumber = styled.div`
+.rule {
+	display: ${props => props.showPhoneNumberValidationError ? 'block' : 'none'}
+}
+`;
+export const StyledInputPhoneNumberRule = styled.p`
+&.rule-1,
+&.rule-2{
+	color: ${props => props.isPassed ? 'green' : 'red'};
+}`
