@@ -1,13 +1,14 @@
 {
-  "name": "react-setup-from-scratch",
+  "name": "card-form",
   "scripts": {
-    "serve": "webpack-dev-server --mode development",
+    "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint --fix --ext .js,.jsx ."
   },
   "dependencies": {
     "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react-dom": "^16.9.0",
+    "styled-components": "^4.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
@@ -17,6 +18,19 @@
     "html-webpack-plugin": "^3.2.0",
     "webpack": "^4.41.0",
     "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.8.1"
+    "webpack-dev-server": "^3.8.1",
+    "enzyme": "^3.9.0",
+    "eslint": "^6.7.1",
+    "babel-eslint": "^10.0.3",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^23.0.4",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "supertest": "4.0.2"
   }
 }
