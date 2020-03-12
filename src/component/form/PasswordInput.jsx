@@ -7,7 +7,7 @@ export const PasswordInput = ({
     handlePassword,
     setShowPasswordValidationError,
 }) => {
-    const { rules: { isPassed }, value } = password
+    const { rule, isPassed, value } = password
     return (
         <StyledInputPassword
             showPasswordValidationError={showPasswordValidationError}
@@ -22,9 +22,10 @@ export const PasswordInput = ({
                 onBlur={() => setShowPasswordValidationError(false)}
                 onFocus={() => setShowPasswordValidationError(true)}
                 placeholder="enter password"
+                required
             />
             <label>Password</label>
-            <p>This password must contain at least one uppercase character, one number, special character and not shorter than 6 characters </p>
+            <p>{rule} </p>
         </StyledInputPassword>
 
     )

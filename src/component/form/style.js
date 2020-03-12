@@ -39,6 +39,27 @@ export const StyledInputConfirmPassword = styled(StyledInputEmail)`
 	}
 
 `;
+export const StyledInputCardNumber = styled(StyledInputEmail)`
+	p{
+	display: ${props => props.showCardNumberValidationError ? 'block' : 'none'};
+	  color: ${props => props.isPassed ? 'green' : 'red'};
+	}
+
+`;
+export const StyledInputExpiry = styled(StyledInputEmail)`
+	p{
+	display: ${props => props.showExpiryValidationError ? 'block' : 'none'};
+	  color: ${props => props.isPassed ? 'green' : 'red'};
+	}
+
+`;
+export const StyledInputPin = styled(StyledInputEmail)`
+	p{
+	display: ${props => props.showPinValidationError ? 'block' : 'none'};
+	  color: ${props => props.isPassed ? 'green' : 'red'};
+	}
+
+`;
 
 export const StyledInputPhoneNumber = styled.div`
 .rule {

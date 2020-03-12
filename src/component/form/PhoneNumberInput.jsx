@@ -20,6 +20,7 @@ export const PhoneNumberInput = ({
                 name="phoneNumber"
                 pattern="^([0]{1})([7-9]{1})([0|1]{1})([\d]{1})([\d]{7})$"
                 id="phoneNumber"
+                max='11'
                 value={value}
                 onChange={handlePhoneNumber}
                 onBlur={() => setShowPhoneNumberValidationError(false)}

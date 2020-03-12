@@ -7,7 +7,7 @@ export const EmailInput = ({
     handleEmail,
     setShowEmailValidationError,
 }) => {
-    const { rules: { isPassed }, value } = email
+    const { rule, isPassed, value } = email
     return (
         <StyledInputEmail
             showEmailValidationError={showEmailValidationError}
@@ -24,7 +24,7 @@ export const EmailInput = ({
                 placeholder="enter email"
             />
             <label>Email</label>
-            <p>This must be an emaillll</p>
+            <p>{rule}</p>
         </StyledInputEmail>
 
     )

@@ -7,7 +7,7 @@ export const ConfirmPasswordInput = ({
     handleConfirmPassword,
     setShowConfirmPasswordValidationError,
 }) => {
-    const { isPassed, value } = confirmPassword
+    const { isPassed, value, rule } = confirmPassword
     return (
         <StyledInputConfirmPassword
             showConfirmPasswordValidationError={showConfirmPasswordValidationError}
@@ -22,9 +22,10 @@ export const ConfirmPasswordInput = ({
                 onBlur={() => setShowConfirmPasswordValidationError(false)}
                 onFocus={() => setShowConfirmPasswordValidationError(true)}
                 placeholder="enter confirmPassword"
+                required
             />
             <label>ConfirmPassword</label>
-            <p>This password must match </p>
+            <p>{rule}</p>
         </StyledInputConfirmPassword>
 
     )

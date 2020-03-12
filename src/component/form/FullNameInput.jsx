@@ -8,7 +8,7 @@ export const FullNameInput = ({ showFullNameValidationError, setShowFullNameVali
     handleFullName,
     fullName
 }) => {
-    const { FullNameValue } = fullName
+    const { fullNameValue } = fullName
     return (
         <StyledInputContainer
             showFullNameValidationError={showFullNameValidationError}
@@ -18,7 +18,7 @@ export const FullNameInput = ({ showFullNameValidationError, setShowFullNameVali
                 name="fullName"
                 id="fullName"
                 required
-                value={FullNameValue}
+                value={fullNameValue}
                 onChange={handleFullName}
                 onFocus={() => setShowFullNameValidationError(true)}
                 onBlur={() => setShowFullNameValidationError(false)}
