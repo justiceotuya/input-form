@@ -3,7 +3,10 @@ import { FullNameInput } from './fullNameInput'
 import { fullNameRules } from './constants'
 import { PhoneNumberInput } from './PhoneNumberInput'
 import { EmailInput } from './EmailInput'
+import { PasswordInput } from './passwordInput'
+import { ConfirmPasswordInput } from './ConfirmPasswordInput'
 export const Form = () => {
+    const cardInputElRef = React.useRef()
     //fullName state with rules that the state must pass
     const [fullName, setFullName] = useState({
         FullNameValue: '',
@@ -18,6 +21,19 @@ export const Form = () => {
             isPassed: false
         }
 
+    })
+
+    const [password, setPassword] = useState({
+        value: '',
+        rules: {
+            rule: 'this must an email',
+            isPassed: false
+        }
+
+    })
+    const [confirmPassword, setConfirmPassword] = useState({
+        value: '',
+        isPassed: false
     })
 
     const [phoneNumber, setPhoneNumber] = useState({
@@ -37,11 +53,13 @@ export const Form = () => {
 
     })
 
-
+    const [cardNumber, setCardNumber] = useState('')
 
     //show or hide validation error for fullname
     const [showFullNameValidationError, setShowFullNameValidationError] = useState(false)
     const [showEmailValidationError, setShowEmailValidationError] = useState(false)
+    const [showPasswordValidationError, setShowPasswordValidationError] = useState(false)
+    const [showConfirmPasswordValidationError, setShowConfirmPasswordValidationError] = useState(false)
     const [showPhoneNumberValidationError, setShowPhoneNumberValidationError] = useState(false)
 
     useEffect(() => {
@@ -135,11 +153,31 @@ export const Form = () => {
         newEmail.value = e.target.value;
         newEmail.rules.isPassed = handleEmailValidity();
         setEmail(newEmail)
+    }
 
+    const handlePassword = (e) => {
+        const handlePasswordValidity = () => {
+            return e.target.checkValidity() && /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{6,})/.test(e.target.value)
+        }
+        // deep clone the object
+        let newPassword = JSON.parse(JSON.stringify(email));
+        newPassword.value = e.target.value;
+        newPassword.rules.isPassed = handlePasswordValidity();
+        setPassword(newPassword)
+    }
+
+    const handleConfirmPassword = (e) => {
+        const handleConfirmPasswordValidity = () => {
+            return e.target.value === password.value
+        }
+        // deep clone the object
+        let newConfirmPassword = JSON.parse(JSON.stringify(email));
+        newConfirmPassword.value = e.target.value;
+        newConfirmPassword.isPassed = handleConfirmPasswordValidity();
+        setConfirmPassword(newConfirmPassword)
     }
 
     const handlePhoneNumber = (e) => {
-
         if (isNaN(`${e.target.value}`)) {
             //controls the phone number input to not accept letters`
             setPhoneNumber({ ...phoneNumber });
@@ -152,6 +190,31 @@ export const Form = () => {
         }
     }
 
+    const to_digits = numString =>
+        numString
+            .replace(/[^0-9]/g, "")
+            .split("")
+            .map(Number);
+
+    const handleCardNumberChange = (e) => {
+        if (cardNumber.length === 1) {
+            setCardNumber(event.target.value)
+        } else if (cardNumber.length % 5 === 0) {
+            setCardNumber(`${event.target.value} `)
+        } else {
+            setCardNumber(event.target.value)
+        }
+        // let test = [];
+        // setCardNumber(event.target.value)
+        // console.log(test)
+        console.log(to_digits(cardNumber))
+        // let value = e.target.value
+        // setCardNumber(e.target.value)
+        // console.log(`${cardNumber.slice(0, 4)} ${cardNumber.slice(
+        //     4,
+        //     8
+        // )} ${cardNumber.slice(8, 12)} ${cardNumber.slice(12, 16)}`)
+    }
 
 
     return (
@@ -173,6 +236,28 @@ export const Form = () => {
                 phoneNumber={phoneNumber}
                 handlePhoneNumber={handlePhoneNumber}
                 setShowPhoneNumberValidationError={setShowPhoneNumberValidationError}
+            />
+            <PasswordInput
+                showPasswordValidationError={showPasswordValidationError}
+                password={password}
+                handlePassword={handlePassword}
+                setShowPasswordValidationError={setShowPasswordValidationError}
+            />
+
+            <ConfirmPasswordInput
+                showConfirmPasswordValidationError={showConfirmPasswordValidationError}
+                confirmPassword={confirmPassword}
+                handleConfirmPassword={handleConfirmPassword}
+                setShowConfirmPasswordValidationError={setShowConfirmPasswordValidationError}
+            />
+
+            <input
+                type="text"
+                name="cardNumber"
+                id="cardNumber"
+                value={cardNumber}
+                onChange={handleCardNumberChange}
+                ref={cardInputElRef}
             />
             <input type="submit" value="submit" />
         </form>

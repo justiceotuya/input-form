@@ -24,7 +24,7 @@ export const EmailInput = ({
                 placeholder="enter email"
             />
             <label>Email</label>
-            <p>This must be an email</p>
+            <p>This must be an emaillll</p>
         </StyledInputEmail>
 
     )

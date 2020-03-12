@@ -18,11 +18,26 @@ export const StyledInputFullNameRule = styled.p`
 }
 `
 export const StyledInputEmail = styled.div`
-
 p{
 display: ${props => props.showEmailValidationError ? 'block' : 'none'};
   color: ${props => props.isPassed ? 'green' : 'red'};
 }
+`;
+
+export const StyledInputPassword = styled(StyledInputEmail)`
+	p{
+	display: ${props => props.showPasswordValidationError ? 'block' : 'none'};
+	  color: ${props => props.isPassed ? 'green' : 'red'};
+	}
+
+`;
+
+export const StyledInputConfirmPassword = styled(StyledInputEmail)`
+	p{
+	display: ${props => props.showConfirmPasswordValidationError ? 'block' : 'none'};
+	  color: ${props => props.isPassed ? 'green' : 'red'};
+	}
+
 `;
 
 export const StyledInputPhoneNumber = styled.div`

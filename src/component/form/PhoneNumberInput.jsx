@@ -14,9 +14,7 @@ export const PhoneNumberInput = ({
     return (
         <StyledInputPhoneNumber
             showPhoneNumberValidationError={showPhoneNumberValidationError}
-
         >
-
             <input
                 type="text"
                 name="phoneNumber"
