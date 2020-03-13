@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import {
-    StyledInputContainer,
-    StyledInputFullNameRule
-} from '../style';
-import { InputComponent } from './InputComponent';
+import React from 'react';
+import PropTypes from 'prop-types';
+import InputComponent from '../../../components/inputComponent';
 
 export const FullNameInput = ({
     showFullNameValidationError,
@@ -11,60 +8,36 @@ export const FullNameInput = ({
     handleFullName,
     fullName,
 }) => (
-    <InputComponent
-        ValidationError={showFullNameValidationError}
-        inputValue={fullName}
-        handleValueChange={handleFullName}
-        setShowValidationError={setShowFullNameValidationError}
-        type="text"
-        name="fullName"
-        placeholder="Full Name"
-        label="Full Name"
-    />
-);
+        <InputComponent
+            ValidationError={showFullNameValidationError}
+            inputValue={fullName}
+            handleValueChange={handleFullName}
+            setShowValidationError={setShowFullNameValidationError}
+            type="text"
+            name="fullName"
+            placeholder="Adamu Chiroma Adekunle"
+            label="Full Name"
+        />
+    );
 
-// export const FullNameInput = ({
-// 	showFullNameValidationError,
-// 	setShowFullNameValidationError,
-// 	handleFullName,
-// 	fullName
-// }) => {
-// 	const { value, rules } = fullName
-// 	return (
-// 		<StyledInputContainer
-// 			showFullNameValidationError={showFullNameValidationError}
-// 		>
-// 			<input
-// 				type="text"
-// 				name="fullName"
-// 				id="fullName"
-// 				required
-// 				value={value}
-// 				onChange={handleFullName}
-// 				onFocus={() => setShowFullNameValidationError(true)}
-// 				onBlur={() => setShowFullNameValidationError(false)}
-// 				placeholder="enter fullname"
-// 			/>
-// 			<label htmlFor="fullName">FullName</label>
-// 			<div
-// 				className="rule"
-// 			>
-// 				{
-// 					rules.map(item => {
-// 						const { id, rule, isPassed } = item
-// 						return (
-// 							<StyledInputFullNameRule
-// 								key={id}
-// 								className={`rule-${id}`}
-// 								isPassed={isPassed}
-// 							>
-// 								{rule}
-// 							</StyledInputFullNameRule>
-// 						)
-// 					})
-// 				}
-// 			</div>
+FullNameInput.propTypes = {
+    fullName: PropTypes.shape({
+        isPassed: PropTypes.bool,
+        rules: PropTypes.arrayOf(
+            PropTypes.shape({
+                id: PropTypes.number,
+                isPassed: PropTypes.bool,
+                value: PropTypes.string,
+            })
+        ),
+        value: PropTypes.string,
+    }).isRequired,
+    handleFullName: PropTypes.func.isRequired,
+    setShowFullNameValidationError: PropTypes.func.isRequired,
+    showFullNameValidationError: PropTypes.bool.isRequired,
 
-// 		</StyledInputContainer>
-// 	)
-// }
+};
+
+FullNameInput.defaultProps = {
+
+};

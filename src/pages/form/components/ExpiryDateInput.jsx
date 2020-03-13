@@ -1,5 +1,6 @@
 import React from 'react';
-import { InputComponent } from './InputComponent';
+import PropTypes from 'prop-types';
+import InputComponent from '../../../components/inputComponent';
 
 export const ExpiryDateInput = ({
     showExpiryValidationError,
@@ -14,7 +15,23 @@ export const ExpiryDateInput = ({
         setShowValidationError={setShowExpiryValidationError}
         type="text"
         name="expiryDate"
-        placeholder="enter expiry date"
+        placeholder="MM/YY"
         label="Expiry Date"
     />
 );
+
+ExpiryDateInput.propTypes = {
+    expiryDate: PropTypes.shape({
+        isPassed: PropTypes.bool,
+        rule: PropTypes.string,
+        value: PropTypes.string,
+    }).isRequired,
+    handleExpiryDateChange: PropTypes.func.isRequired,
+    setShowExpiryValidationError: PropTypes.func.isRequired,
+    showExpiryValidationError: PropTypes.bool.isRequired,
+
+};
+
+ExpiryDateInput.defaultProps = {
+
+};

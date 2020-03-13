@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { fullNameRules, phoneNumberRules } from './constants';
+import { useHistory } from 'react-router-dom';
+import { fullNameRules, phoneNumberRules, strings } from './constants';
+import { StyledForm, StyledMainContainer, StyledButton } from './style';
 import {
     handleEmailValidity,
     handlePasswordValidity,
     isAValidNumber
 } from '../../utils';
-import { strings } from './constants'
-const {
-    PASSWORD_RULE,
-    EMAIL_RULE,
-    CONFIRM_PASSWORD_RULE,
-    CARD_NUMBER_RULE,
-    EXPIRY_DATE_RULE,
-    PIN_RULE
-} = strings
 
 import {
     PhoneNumberInput,
@@ -26,7 +19,17 @@ import {
     FullNameInput
 } from './components';
 
+const {
+    PASSWORD_RULE,
+    EMAIL_RULE,
+    CONFIRM_PASSWORD_RULE,
+    CARD_NUMBER_RULE,
+    EXPIRY_DATE_RULE,
+    PIN_RULE,
+} = strings;
+
 export const Form = () => {
+    const history = useHistory();
     // fullName state with rules that the state must pass
     const [fullName, setFullName] = useState({
         rules: fullNameRules,
@@ -53,36 +56,46 @@ export const Form = () => {
     });
 
     const [phoneNumber, setPhoneNumber] = useState({
+        rules: phoneNumberRules,
         value: '',
-        rules: phoneNumberRules
     });
 
     const [cardNumber, setCardNumber] = useState({
-        value: '',
-        rule: CARD_NUMBER_RULE,
         isPassed: false,
+        rule: CARD_NUMBER_RULE,
+        value: '',
     });
     const [expiryDate, setExpiryDate] = useState({
-        value: '',
-        rule: EXPIRY_DATE_RULE,
         isPassed: false,
+        rule: EXPIRY_DATE_RULE,
+        value: '',
     });
 
     const [pin, setPin] = useState({
-        value: '',
-        rule: PIN_RULE,
         isPassed: false,
+        rule: PIN_RULE,
+        value: '',
     });
 
     // show or hide validation error for fullname
-    const [showFullNameValidationError, setShowFullNameValidationError] = useState(false);
-    const [showEmailValidationError, setShowEmailValidationError] = useState(false);
-    const [showPasswordValidationError, setShowPasswordValidationError] = useState(false);
-    const [showConfirmPasswordValidationError, setShowConfirmPasswordValidationError] = useState(false);
-    const [showPhoneNumberValidationError, setShowPhoneNumberValidationError] = useState(false);
-    const [showCardNumberValidationError, setShowCardNumberValidationError] = useState(false);
-    const [showExpiryValidationError, setShowExpiryValidationError] = useState(false);
-    const [showPinValidationError, setShowPinValidationError] = useState(false);
+    const [showFullNameValidationError,
+        setShowFullNameValidationError] = useState(false);
+    const [showEmailValidationError,
+        setShowEmailValidationError] = useState(false);
+    const [showPasswordValidationError,
+        setShowPasswordValidationError] = useState(false);
+    const [showConfirmPasswordValidationError,
+        setShowConfirmPasswordValidationError] = useState(false);
+    const [showPhoneNumberValidationError,
+        setShowPhoneNumberValidationError] = useState(false);
+    const [showCardNumberValidationError,
+        setShowCardNumberValidationError] = useState(false);
+    const [showExpiryValidationError,
+        setShowExpiryValidationError] = useState(false);
+    const [showPinValidationError,
+        setShowPinValidationError] = useState(false);
+    const [hasAllFieldPassedValidation,
+        setHasAllFieldPassedValidation] = useState(false);
 
     useEffect(() => {
         // handles validation error for fullname field
@@ -110,7 +123,7 @@ export const Form = () => {
             }
 
             // check if the fullname is validated
-            const isNotValidated = fullName.rules.some(rule => rule.isPassed === false);
+            // const isNotValidated = fullName.rules.some(rule => rule.isPassed === false);
         };
 
         handleFullNameValidationError();
@@ -156,6 +169,39 @@ export const Form = () => {
         };
         handlePhoneNumberValidationError();
     }, [phoneNumber.value]);
+
+    useEffect(() => {
+        const handleSubmitButtonToggle = () => {
+            const stateValues = [
+                fullName,
+                email,
+                password,
+                confirmPassword,
+                phoneNumber,
+                cardNumber,
+                expiryDate,
+                pin,
+            ];
+            const PassedValues = [];
+            stateValues.map(item => {
+                if (item.rules) {
+                    item.rules.map(i => i.isPassed && PassedValues.push(i));
+                } else if (item.isPassed) {
+                    PassedValues.push(item);
+                }
+            });
+            return PassedValues.length === 10 ? setHasAllFieldPassedValidation(true) : setHasAllFieldPassedValidation(false);
+        };
+
+        handleSubmitButtonToggle();
+    }, [fullName,
+        email,
+        password,
+        confirmPassword,
+        phoneNumber,
+        cardNumber,
+        expiryDate,
+        pin]);
 
     const handleFullName = e => {
         setFullName({
@@ -252,64 +298,71 @@ export const Form = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        console.log('submitted');
+        if (hasAllFieldPassedValidation === true) {
+            // window.location.href = "/dashboard"
+            history.push('/dashboard');
+        }
     };
 
     return (
-        <form>
-            <FullNameInput
-                showFullNameValidationError={showFullNameValidationError}
-                setShowFullNameValidationError={setShowFullNameValidationError}
-                handleFullName={handleFullName}
-                fullName={fullName}
-            />
-            <EmailInput
-                showEmailValidationError={showEmailValidationError}
-                email={email}
-                handleEmail={handleEmail}
-                setShowEmailValidationError={setShowEmailValidationError}
-            />
-            <PhoneNumberInput
-                showPhoneNumberValidationError={showPhoneNumberValidationError}
-                phoneNumber={phoneNumber}
-                handlePhoneNumber={handlePhoneNumber}
-                setShowPhoneNumberValidationError={setShowPhoneNumberValidationError}
-            />
-            <PasswordInput
-                showPasswordValidationError={showPasswordValidationError}
-                password={password}
-                handlePassword={handlePassword}
-                setShowPasswordValidationError={setShowPasswordValidationError}
-            />
+        <StyledMainContainer>
+            <StyledForm>
+                <FullNameInput
+                    showFullNameValidationError={showFullNameValidationError}
+                    setShowFullNameValidationError={setShowFullNameValidationError}
+                    handleFullName={handleFullName}
+                    fullName={fullName}
+                />
+                <EmailInput
+                    showEmailValidationError={showEmailValidationError}
+                    email={email}
+                    handleEmail={handleEmail}
+                    setShowEmailValidationError={setShowEmailValidationError}
+                />
+                <PhoneNumberInput
+                    showPhoneNumberValidationError={showPhoneNumberValidationError}
+                    phoneNumber={phoneNumber}
+                    handlePhoneNumber={handlePhoneNumber}
+                    setShowPhoneNumberValidationError={setShowPhoneNumberValidationError}
+                />
+                <PasswordInput
+                    showPasswordValidationError={showPasswordValidationError}
+                    password={password}
+                    handlePassword={handlePassword}
+                    setShowPasswordValidationError={setShowPasswordValidationError}
+                />
 
-            <ConfirmPasswordInput
-                showConfirmPasswordValidationError={showConfirmPasswordValidationError}
-                confirmPassword={confirmPassword}
-                handleConfirmPassword={handleConfirmPassword}
-                setShowConfirmPasswordValidationError={setShowConfirmPasswordValidationError}
-            />
-            <CardNumberInput
-                showCardNumberValidationError={showCardNumberValidationError}
-                cardNumber={cardNumber}
-                handleCardNumberChange={handleCardNumberChange}
-                setShowCardNumberValidationError={setShowCardNumberValidationError}
-            />
+                <ConfirmPasswordInput
+                    showConfirmPasswordValidationError={showConfirmPasswordValidationError}
+                    confirmPassword={confirmPassword}
+                    handleConfirmPassword={handleConfirmPassword}
+                    setShowConfirmPasswordValidationError={setShowConfirmPasswordValidationError}
+                />
+                <CardNumberInput
+                    showCardNumberValidationError={showCardNumberValidationError}
+                    cardNumber={cardNumber}
+                    handleCardNumberChange={handleCardNumberChange}
+                    setShowCardNumberValidationError={setShowCardNumberValidationError}
+                />
+                <div className="card_pin_date">
+                    <ExpiryDateInput
+                        showExpiryValidationError={showExpiryValidationError}
+                        expiryDate={expiryDate}
+                        handleExpiryDateChange={handleExpiryDateChange}
+                        setShowExpiryValidationError={setShowExpiryValidationError}
+                    />
 
-            <ExpiryDateInput
-                showExpiryValidationError={showExpiryValidationError}
-                expiryDate={expiryDate}
-                handleExpiryDateChange={handleExpiryDateChange}
-                setShowExpiryValidationError={setShowExpiryValidationError}
-            />
-
-            <PinInput
-                showPinValidationError={showPinValidationError}
-                pin={pin}
-                handlePinChange={handlePinChange}
-                setShowPinValidationError={setShowPinValidationError}
-            />
-
-            <input type="submit" value="submit" onClick={handleSubmit} />
-        </form>
+                    <PinInput
+                        showPinValidationError={showPinValidationError}
+                        pin={pin}
+                        handlePinChange={handlePinChange}
+                        setShowPinValidationError={setShowPinValidationError}
+                    />
+                </div>
+                <StyledButton onClick={handleSubmit} disabled={!hasAllFieldPassedValidation}>
+                    submit
+                </StyledButton>
+            </StyledForm>
+        </StyledMainContainer>
     );
 };

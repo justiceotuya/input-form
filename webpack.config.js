@@ -14,11 +14,17 @@ module.exports = {
             resolve: { extensions: ['.js', '.jsx'] },
             include: path.resolve(__dirname, 'src'),
             use: ['babel-loader'],
-        }],
+        },
+        {
+            test: /\.css$/,
+            use: ['style-loader', 'css-loader'],
+        },
+        ],
+
     },
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),
-        port: 9000,
+        port: 5000,
     },
     plugins: [
         new HtmlWebpackPlugin({
