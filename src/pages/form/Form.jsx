@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import { useHistory } from 'react-router-dom';
 import { fullNameRules, phoneNumberRules, strings } from './constants';
 import { StyledForm, StyledMainContainer, StyledButton } from './style';
@@ -30,7 +30,6 @@ const {
 
 export const Form = () => {
     const history = useHistory();
-    // fullName state with rules that the state must pass
     const [fullName, setFullName] = useState({
         rules: fullNameRules,
         showFullNameValidationError: false,
@@ -121,9 +120,6 @@ export const Form = () => {
                 newState.rules[1].isPassed = false;
                 setFullName({ ...newState });
             }
-
-            // check if the fullname is validated
-            // const isNotValidated = fullName.rules.some(rule => rule.isPassed === false);
         };
 
         handleFullNameValidationError();
@@ -171,7 +167,9 @@ export const Form = () => {
     }, [phoneNumber.value]);
 
     useEffect(() => {
+        // watch for all the isPassed values in the state and only allow submittion if all ithe rules are passed
         const handleSubmitButtonToggle = () => {
+            //add all the state value to an array
             const stateValues = [
                 fullName,
                 email,
@@ -182,14 +180,17 @@ export const Form = () => {
                 expiryDate,
                 pin,
             ];
+            //create anew array to push only rules that have passed validation
             const PassedValues = [];
             stateValues.map(item => {
+                // if there are multiple rules in a Component, map through the rule and push only the rule whose rule has been passed
                 if (item.rules) {
                     item.rules.map(i => i.isPassed && PassedValues.push(i));
                 } else if (item.isPassed) {
                     PassedValues.push(item);
                 }
             });
+            // check if you have 10 isPassed truthy PassedValues, only then should the button be enabled
             return PassedValues.length === 10 ? setHasAllFieldPassedValidation(true) : setHasAllFieldPassedValidation(false);
         };
 
@@ -203,12 +204,20 @@ export const Form = () => {
         expiryDate,
         pin]);
 
+    /**
+     *This function sets the states of the fullname input by grabing the typed value on the input
+     * @param {object} e the events called when a change is occuring n the component
+     */
     const handleFullName = e => {
         setFullName({
             ...fullName, value: e.target.value,
         });
     };
 
+    /**
+       *This function sets the states of the email input by grabing the typed value on the input
+       * @param {object} e the events called when a change is occuring on the component
+       */
     const handleEmail = e => {
         // deep clone the object
         const newEmail = JSON.parse(JSON.stringify(email));
@@ -217,6 +226,10 @@ export const Form = () => {
         setEmail(newEmail);
     };
 
+    /**
+    *This function sets the states of the password input by grabing the typed value on the input
+    * @param {object} e the events called when a change is occuring on the component
+    */
     const handlePassword = e => {
         // deep clone the object
         const newPassword = JSON.parse(JSON.stringify(password));
@@ -225,6 +238,10 @@ export const Form = () => {
         setPassword(newPassword);
     };
 
+    /**
+    *This function sets the states of the confirm password input by grabing the typed value on the input and comparing against the password field
+    * @param {object} e the events called when a change is occuring on the component
+    */
     const handleConfirmPassword = e => {
         const handleConfirmPasswordValidity = () => password.value.length > 0 && e.target.value === password.value;
         // deep clone the object
@@ -234,12 +251,22 @@ export const Form = () => {
         setConfirmPassword(newConfirmPassword);
     };
 
+    /**
+    *This function sets the states of the phone number input by grabing the typed value on the input
+    * @param {object} e the events called when a change is occuring on the component
+    */
+
     const handlePhoneNumber = e => {
         isAValidNumber(e.target.value) && setPhoneNumber(
             { ...phoneNumber, value: e.target.value }
         );
     };
 
+
+    /**
+    *This function sets the states of the reditcard input by grabing the typed value on the input
+    * @param {object} e the events called when a change is occuring on the component
+    */
     const handleCardNumberChange = e => {
         const cardValue = e.target.value;
         // check the values, match group of 4 values and push to an array
@@ -255,6 +282,10 @@ export const Form = () => {
         }
     };
 
+    /**
+    *This function sets the states of the expiry date  input by grabing the typed value on the input
+    * @param {object} e the events called when a change is occuring on the component
+    */
     const handleExpiryDateChange = e => {
         const expiryDateValue = e.target.value;
         // check the values, match group of 4 values and push to an array
@@ -278,8 +309,15 @@ export const Form = () => {
         }
     };
 
+
+    /**
+    *This function sets the states of the pin input by grabing the typed value on the input
+    * @param {object} e the events called when a change is occuring on the component
+    */
     const handlePinChange = e => {
+        //first only allow numbers
         if (isAValidNumber(e.target.value)) {
+            // only allow input and value change if the value is less than or equal to 4
             if (e.target.value.length <= 4) {
                 setPin({
                     ...pin,
@@ -296,10 +334,14 @@ export const Form = () => {
         }
     };
 
+    /**
+    *This function handles the submission of the form
+    * @param {object} e the events called when a change is occuring on the component
+    */
     const handleSubmit = e => {
         e.preventDefault();
+        // if the form has passed validation and the submit button clicked, navigate to the dashboard
         if (hasAllFieldPassedValidation === true) {
-            // window.location.href = "/dashboard"
             history.push('/dashboard');
         }
     };

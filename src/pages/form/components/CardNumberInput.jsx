@@ -8,17 +8,17 @@ export const CardNumberInput = ({
     handleCardNumberChange,
     setShowCardNumberValidationError,
 }) => (
-    <InputComponent
-        ValidationError={showCardNumberValidationError}
-        inputValue={cardNumber}
-        handleValueChange={handleCardNumberChange}
-        setShowValidationError={setShowCardNumberValidationError}
-        type="text"
-        name="cardNumber"
-        placeholder="XXXX XXXX XXXX XXXX"
-        label="Card Number"
-    />
-);
+        <InputComponent
+            ValidationError={showCardNumberValidationError}
+            inputValue={cardNumber}
+            handleValueChange={handleCardNumberChange}
+            setShowValidationError={setShowCardNumberValidationError}
+            type="text"
+            name="cardNumber"
+            placeholder="XXXX XXXX XXXX XXXX"
+            label="Card Number"
+        />
+    );
 CardNumberInput.propTypes = {
     cardNumber: PropTypes.shape({
         isPassed: PropTypes.bool,
@@ -28,8 +28,4 @@ CardNumberInput.propTypes = {
     handleCardNumberChange: PropTypes.func.isRequired,
     setShowCardNumberValidationError: PropTypes.func.isRequired,
     showCardNumberValidationError: PropTypes.bool.isRequired,
-};
-
-CardNumberInput.defaultProps = {
-
 };

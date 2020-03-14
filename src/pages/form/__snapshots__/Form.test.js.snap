@@ -1,0 +1,259 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render correctly Form 1`] = `
+<main
+  className="style__StyledMainContainer-eru9ex-0 caGFYz"
+>
+  <form
+    className="style__StyledForm-eru9ex-1 bsFvrx"
+  >
+    <div
+      className="style__StyledInputContainer-sc-1k0y8dv-0 gfDwB fullName fullName"
+    >
+      <label
+        htmlFor="fullName"
+      >
+        Full Name
+      </label>
+      <input
+        id="fullName"
+        name="fullName"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder="Adamu Chiroma Adekunle"
+        required={true}
+        type="text"
+        value=""
+      />
+      <div
+        className="rule"
+      >
+        <p
+          className="style__StyledInputRule-sc-1k0y8dv-1 hgRmGt rule-1"
+        >
+          Name must not be less that 2 characters
+        </p>
+        <p
+          className="style__StyledInputRule-sc-1k0y8dv-1 hgRmGt rule-2"
+        >
+           Full Name must include a space and then second name
+        </p>
+      </div>
+    </div>
+    <div
+      className="style__StyledInputContainer-sc-1k0y8dv-0 gfDwB email email"
+    >
+      <label
+        htmlFor="email"
+      >
+        Email
+      </label>
+      <input
+        id="email"
+        name="email"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder="email@address.com"
+        required={true}
+        type="email"
+        value=""
+      />
+      <p>
+        this must an email
+      </p>
+    </div>
+    <div
+      className="style__StyledInputContainer-sc-1k0y8dv-0 gfDwB phoneNumber phoneNumber"
+    >
+      <label
+        htmlFor="phoneNumber"
+      >
+        Phone number
+      </label>
+      <input
+        id="phoneNumber"
+        name="phoneNumber"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder="08011111111"
+        required={true}
+        type="text"
+        value=""
+      />
+      <div
+        className="rule"
+      >
+        <p
+          className="style__StyledInputRule-sc-1k0y8dv-1 hgRmGt rule-1"
+        >
+          Must be a Nigerian Phone number
+        </p>
+        <p
+          className="style__StyledInputRule-sc-1k0y8dv-1 hgRmGt rule-2"
+        >
+          must not be longer or shorter than 11 characters
+        </p>
+      </div>
+    </div>
+    <div
+      className="style__StyledInputContainer-sc-1k0y8dv-0 gfDwB password password"
+    >
+      <label
+        htmlFor="password"
+      >
+        Password
+      </label>
+      <input
+        id="password"
+        name="password"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder="****************"
+        required={true}
+        type="password"
+        value=""
+      />
+      <p>
+        This password must contain at least one uppercase character,
+    one number, special character and not shorter than 6 characters
+      </p>
+    </div>
+    <div
+      className="style__StyledInputContainer-sc-1k0y8dv-0 gfDwB confirmPassword confirmPassword"
+    >
+      <label
+        htmlFor="confirmPassword"
+      >
+        Confirm Password
+      </label>
+      <input
+        id="confirmPassword"
+        name="confirmPassword"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder="****************"
+        required={true}
+        type="password"
+        value=""
+      />
+      <p>
+        This must be the same as Password
+      </p>
+    </div>
+    <div
+      className="style__StyledInputContainer-sc-1k0y8dv-0 gfDwB cardNumber cardNumber"
+    >
+      <label
+        htmlFor="cardNumber"
+      >
+        Card Number
+      </label>
+      <input
+        id="cardNumber"
+        name="cardNumber"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder="XXXX XXXX XXXX XXXX"
+        required={true}
+        type="text"
+        value=""
+      />
+      <p>
+        card number must be 16 digits
+      </p>
+    </div>
+    <div
+      className="card_pin_date"
+    >
+      <div
+        className="style__StyledInputContainer-sc-1k0y8dv-0 gfDwB expiryDate expiryDate"
+      >
+        <label
+          htmlFor="expiryDate"
+        >
+          Expiry Date
+        </label>
+        <input
+          id="expiryDate"
+          name="expiryDate"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          placeholder="MM/YY"
+          required={true}
+          type="text"
+          value=""
+        />
+        <p>
+          card number must be 4 digits
+        </p>
+      </div>
+      <div
+        className="style__StyledInputContainer-sc-1k0y8dv-0 gfDwB pin pin"
+      >
+        <label
+          htmlFor="pin"
+        >
+          Pin
+        </label>
+        <input
+          id="pin"
+          name="pin"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          placeholder="****"
+          required={true}
+          type="password"
+          value=""
+        />
+        <p>
+          pin number must be 4 digits
+        </p>
+      </div>
+    </div>
+    <button
+      className="style__StyledButton-eru9ex-2 jEXebJ"
+      disabled={true}
+      onClick={[Function]}
+    >
+      submit
+    </button>
+  </form>
+</main>
+`;
+
+exports[`render correctly InputComponent 1`] = `
+<div
+  className="style__StyledInputContainer-sc-1k0y8dv-0 gfDwB test test"
+>
+  <label
+    htmlFor="test"
+  >
+    test
+  </label>
+  <input
+    id="test"
+    name="test"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    placeholder="test"
+    required={true}
+    type="text"
+  />
+  <div
+    className="rule"
+  >
+    <p
+      className="style__StyledInputRule-sc-1k0y8dv-1 cpaqwM rule-1"
+    />
+  </div>
+</div>
+`;

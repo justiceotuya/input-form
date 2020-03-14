@@ -2,6 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyledInputRule, StyledInputContainer } from './style';
 
+/**
+ * This components wraps around input component and is used to create other components in the form
+ * @prop {boolean} ValidationError - validation error, is true if there is an error
+ * @prop {object} inputValue - returns the value, rules and  isPassed flag of the in put
+ * @prop {boolean} inputValue.isPassed - returns true is a rule is passed
+ * @prop {string} inputValue.value - the value of the input field
+ * @prop {array} inputValue.rules - an object that holds multiple rules that the input can pass
+ * @prop {string} inputValue.rules.id -the id of a rule in an array of rules
+ * @prop {boolean} inputValue.rules.isPassed - the isPassed flag of a rule. run checks against the input to know its status
+ * @prop {string} inputValue.rules.value - the value of the input, the rule is run against this value
+ * @prop {string} inputValue.rule - a single rule, if a component has just one rule
+ * @prop {string} handleValueChange - this function handles the input value change
+ * @prop {func} setShowValidationError - this helps in toggling showing the validation error in an input component
+ * @prop {string} type - the type of the input eg 'password', 'text'
+ * @prop {number} name - The name of the input field,  used in connecting the input to its label
+ * @prop {string} placeholder - This helps the user understand what is suppose to go into an input field
+ * @prop {string} label - the label of the input, this helps user know hat field the input is for
+ */
 export const InputComponent = ({
     ValidationError,
     inputValue,
@@ -96,7 +114,6 @@ InputComponent.propTypes = {
     placeholder: PropTypes.string.isRequired,
     setShowValidationError: PropTypes.func.isRequired,
     type: PropTypes.string.isRequired,
-    value: PropTypes.string,
 };
 
 InputComponent.defaultProps = {

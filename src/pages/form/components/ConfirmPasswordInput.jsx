@@ -31,7 +31,3 @@ ConfirmPasswordInput.propTypes = {
     showConfirmPasswordValidationError: PropTypes.bool.isRequired,
 
 };
-
-ConfirmPasswordInput.defaultProps = {
-
-};

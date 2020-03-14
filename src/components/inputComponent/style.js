@@ -4,7 +4,7 @@ import styled from 'styled-components';
  * INPUT
  ********** */
 export const StyledInputContainer = styled.div.attrs(props => ({
-    className: props.className,
+	className: props.className,
 }))`
 &.pin , &.expiryDate {
     width: 45%
@@ -41,7 +41,7 @@ input {
   box-shadow: 0px 0px 2px 3px rgba(210,208,208,1);
     }
     ::placeholder {
-
+    opacity: .3
     }
 }
 

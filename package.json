@@ -3,7 +3,8 @@
   "scripts": {
     "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
-    "lint": "eslint --fix --ext .js,.jsx ."
+    "lint": "eslint --fix --ext .js,.jsx .",
+    "test": "jest -c jest.config.js --watch"
   },
   "dependencies": {
     "prop-types": "^15.7.2",
@@ -11,12 +12,15 @@
     "react-dom": "^16.9.0",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
+    "react-test-renderer": "^16.13.0",
     "styled-components": "^4.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
+    "@testing-library/jest-dom": "^5.1.1",
+    "@testing-library/react": "^10.0.1",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "babel-plugin-macros": "^2.8.0",
